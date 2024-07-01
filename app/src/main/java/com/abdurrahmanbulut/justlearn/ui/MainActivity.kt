@@ -21,8 +21,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
-
             JustLearnTheme {
                 Surface {
                     AppNavigation()
