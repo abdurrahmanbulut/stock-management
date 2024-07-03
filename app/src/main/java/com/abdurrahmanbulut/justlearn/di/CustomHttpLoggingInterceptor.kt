@@ -7,6 +7,7 @@ import okhttp3.Response
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import java.nio.charset.StandardCharsets
+import kotlin.math.log
 
 
 class CustomHttpLoggingInterceptor : Interceptor {
@@ -21,32 +22,52 @@ class CustomHttpLoggingInterceptor : Interceptor {
     }
 
     private fun logRequest(request: Request) {
+        logger.log("LOGGER GOLLUM")
+        val separator = "\n-----------------------\n"
+
         logger.log("REQUEST:")
-        logger.log("${request.method} ${request.url}")
+
+        logger.log("METHOD: ${request.method}")
+        logger.log("URL: ${request.url}")
+
+        logger.log("HEADER ->")
         request.headers.forEach { header ->
-            logger.log("${header.first}: ${header.second}")
+            logger.log("    * ${header.first}: ${header.second}")
         }
+        logger.log("\n")
         request.body?.let { body ->
-            logger.log("Body: ${bodyToString(body)}")
+            logger.log("BODY: ${bodyToString(body)}")
         }
-        logger.log("END REQUEST")
+
+        logger.log("END REQUEST$separator")
     }
 
+
     private fun logAndCloneResponse(response: Response): Response {
+        val separator = "\n-----------------------\n"
+
         val responseBody = response.body
         val responseBodyString = responseBody?.string()
 
         logger.log("RESPONSE:")
-        logger.log("${response.code} ${response.message} ${response.request.url}")
-        response.headers.forEach { header ->
-            logger.log("${header.first}: ${header.second}")
-        }
-        responseBodyString?.let {
-            logger.log("Body: $it")
-        }
-        logger.log("END RESPONSE")
 
-        // Rebuild the response before returning it because response.body().string() closes the response
+        logger.log("STATUS: ${response.code}")
+        logger.log("MESSAGE: ${response.message}")
+        logger.log("REQUEST URL: ${response.request.url}")
+
+        logger.log("HEADER")
+        response.headers.forEach { header ->
+            logger.log("    * ${header.first}: ${header.second}")
+        }
+
+        logger.log("\n")
+        logger.log("BODY ->")
+        responseBodyString?.let {
+            logger.log(it)
+        }
+
+        logger.log("END RESPONSE$separator")
+
         return response.newBuilder()
             .body(ResponseBody.create(responseBody?.contentType(), responseBodyString ?: ""))
             .build()
