@@ -13,9 +13,9 @@ import com.abdurrahmanbulut.sherlock.navigation.ExitTransitionCallback
 import com.abdurrahmanbulut.sherlock.navigation.Navigation
 import com.abdurrahmanbulut.sherlock.navigation.toNavArg
 
-fun NavGraphBuilder.navGraph(){
-    screen(Screen.Splash.route){ SplashScreen()}
-    screen(Screen.Home.route){ HomeScreen(it.toNavArg())}
+fun NavGraphBuilder.navGraph()  {
+    screen(Screen.Splash.route) { SplashScreen() }
+    screen(Screen.Home.route) { HomeScreen(it.toNavArg()) }
 }
 
 fun NavGraphBuilder.screen(
@@ -24,7 +24,7 @@ fun NavGraphBuilder.screen(
     exitTransition: ExitTransitionCallback? = Navigation.exitTransition,
     popEnterTransition: EnterTransitionCallback? = Navigation.popEnterTransition,
     popExitTransition: ExitTransitionCallback? = Navigation.popExitTransition,
-    content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
+    content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit,
 ) {
     composable(
         route = "$route?navArg={navArg}",
@@ -33,7 +33,6 @@ fun NavGraphBuilder.screen(
         exitTransition = exitTransition,
         popEnterTransition = popEnterTransition,
         popExitTransition = popExitTransition,
-        content = content
+        content = content,
     )
 }
-

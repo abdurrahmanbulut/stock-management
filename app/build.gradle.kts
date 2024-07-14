@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
     alias(libs.plugins.compose.compiler)
-
+    alias(libs.plugins.ktlint)
 }
 
 android {
@@ -27,7 +27,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -49,7 +49,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-
 }
 
 dependencies {
@@ -71,7 +70,6 @@ dependencies {
     implementation(libs.lottie)
 
     implementation(fileTree("../libs"))
-
 
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)

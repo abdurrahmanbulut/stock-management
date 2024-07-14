@@ -16,19 +16,19 @@ import org.koin.core.parameter.parametersOf
 
 @Composable
 fun HomeScreen(text: TestData?) {
-    val viewModel: HomeScreenVM = koinViewModel{ parametersOf(text) }
+    val viewModel: HomeScreenVM = koinViewModel { parametersOf(text) }
     val navigator = LocalNavigator.current
     val insets = LocalInsets.current
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = insets.statusBarHeight)
-            .clickable { navigator.pop() }
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(top = insets.statusBarHeight)
+                .clickable { navigator.pop() },
     ) {
-
         Text(
             text = viewModel.test,
-            modifier = Modifier.padding(bottom = 20.dp)
+            modifier = Modifier.padding(bottom = 20.dp),
         )
     }
 }

@@ -12,9 +12,7 @@ import com.abdurrahmanbulut.sherlock.navigation.Navigator
 
 val LocalNavigator = staticCompositionLocalOf<Navigator> { error("No Navigator provided") }
 
-
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,5 +24,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
 }

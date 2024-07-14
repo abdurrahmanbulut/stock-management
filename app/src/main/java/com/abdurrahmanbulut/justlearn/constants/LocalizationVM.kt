@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class LocalizationViewModel() : ViewModel() {
-
     private val _localizationStrings = MutableStateFlow<Map<String, String>>(emptyMap())
     val localizationStrings: StateFlow<Map<String, String>> = _localizationStrings
 

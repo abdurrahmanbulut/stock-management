@@ -18,7 +18,6 @@ import org.koin.androidx.compose.koinViewModel
 val LocalInsets =
     compositionLocalOf<InsetsViewModel> { error("No InsetsViewModel provided") }
 
-
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
@@ -31,7 +30,7 @@ fun AppNavigation() {
 
     CompositionLocalProvider(
         LocalNavigator provides navigator,
-        LocalInsets provides insets
+        LocalInsets provides insets,
     ) {
         NavHost(
             navController = navController,
@@ -39,10 +38,9 @@ fun AppNavigation() {
             enterTransition = Navigation.enterTransition,
             exitTransition = Navigation.exitTransition,
             popEnterTransition = Navigation.popEnterTransition,
-            popExitTransition = Navigation.popExitTransition
+            popExitTransition = Navigation.popExitTransition,
         ) {
             navGraph()
         }
     }
-
 }

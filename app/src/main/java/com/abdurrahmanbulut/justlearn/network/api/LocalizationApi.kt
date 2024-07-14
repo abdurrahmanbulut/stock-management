@@ -6,5 +6,7 @@ import retrofit2.http.Query
 
 interface LocalizationApi {
     @GET("localization")
-    suspend fun getLocalizationStrings(@Query("lang") lang: String): List<LocalizationKeys>
+    suspend fun getLocalizationStrings(
+        @Query("lang") lang: String,
+    ): List<LocalizationKeys>
 }

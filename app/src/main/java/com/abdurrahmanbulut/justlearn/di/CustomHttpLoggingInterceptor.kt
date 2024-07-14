@@ -11,9 +11,7 @@ import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import java.nio.charset.StandardCharsets
 
-
 class CustomHttpLoggingInterceptor : Interceptor {
-
     private val logger = HttpLoggingInterceptor.Logger.DEFAULT
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -46,7 +44,6 @@ class CustomHttpLoggingInterceptor : Interceptor {
         logger.log("END REQUEST$separator")
     }
 
-
     private fun logAndCloneResponse(response: Response): Response {
         val separator = "\n-----------------------\n"
 
@@ -76,7 +73,6 @@ class CustomHttpLoggingInterceptor : Interceptor {
             .body(ResponseBody.create(responseBody?.contentType(), responseBodyString ?: ""))
             .build()
     }
-
 
     private fun bodyToString(requestBody: RequestBody): String {
         return try {

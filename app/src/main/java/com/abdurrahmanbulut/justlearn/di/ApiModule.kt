@@ -20,12 +20,13 @@ fun splashApi(retrofit: Retrofit): SplashApi {
     return retrofit.create(SplashApi::class.java)
 }
 
-val apiModule = module {
-    single { provideLoggingInterceptor() }
-    single { provideOkHttpClient(get()) }
-    single { provideRetrofit(get()) }
-    single { splashApi(get()) }
-}
+val apiModule =
+    module {
+        single { provideLoggingInterceptor() }
+        single { provideOkHttpClient(get()) }
+        single { provideRetrofit(get()) }
+        single { splashApi(get()) }
+    }
 
 fun provideLoggingInterceptor(): CustomHttpLoggingInterceptor {
     return CustomHttpLoggingInterceptor()
