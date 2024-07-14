@@ -21,7 +21,7 @@ class SplashRepository(private val api: SplashApi) {
     fun getBreeds(
         coroutineScope: CoroutineScope,
         state: MutableState<ServiceResult<Breeds>>,
-    )  {
+    ) {
         coroutineScope.call(state) {
             api.getBreeds()
         }

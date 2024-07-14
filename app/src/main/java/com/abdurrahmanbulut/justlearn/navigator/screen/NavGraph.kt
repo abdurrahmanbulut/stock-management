@@ -13,7 +13,7 @@ import com.abdurrahmanbulut.sherlock.navigation.ExitTransitionCallback
 import com.abdurrahmanbulut.sherlock.navigation.Navigation
 import com.abdurrahmanbulut.sherlock.navigation.toNavArg
 
-fun NavGraphBuilder.navGraph()  {
+fun NavGraphBuilder.navGraph() {
     screen(Screen.Splash.route) { SplashScreen() }
     screen(Screen.Home.route) { HomeScreen(it.toNavArg()) }
 }

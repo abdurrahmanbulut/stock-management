@@ -19,7 +19,7 @@ class HomeScreenVM(private val splashRepository: SplashRepository, val data: Tes
         println(data)
     }
 
-    private fun getFacts()  {
+    private fun getFacts() {
         splashRepository.getFacts(viewModelScope, catFact)
     }
 }
