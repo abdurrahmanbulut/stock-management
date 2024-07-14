@@ -5,19 +5,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abdurrahmanbulut.sherlock.network.ServiceResult
-import com.abdurrahmanbulut.stockManagement.model.CatFact
-import com.abdurrahmanbulut.stockManagement.network.repository.SplashRepository
+import com.abdurrahmanbulut.stockManagement.model.StockResponse
+import com.abdurrahmanbulut.stockManagement.network.repository.StockRepository
 
-class HomeScreenVM(private val splashRepository: SplashRepository) : ViewModel() {
+class HomeScreenVM(private val stockRepository: StockRepository) : ViewModel() {
     val test = "Home Screen"
 
-    val catFact: MutableState<ServiceResult<CatFact>> = mutableStateOf(ServiceResult.Loading)
+    val stock: MutableState<ServiceResult<StockResponse>> = mutableStateOf(ServiceResult.Loading)
 
     init {
-        getFacts()
+        getStock()
     }
 
-    private fun getFacts() {
-        splashRepository.getFacts(viewModelScope, catFact)
+    private fun getStock() {
+        stockRepository.getStockPrice(viewModelScope, "IBM", stock)
     }
 }

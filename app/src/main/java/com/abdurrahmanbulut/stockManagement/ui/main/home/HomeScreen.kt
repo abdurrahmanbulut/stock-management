@@ -25,7 +25,7 @@ fun HomeScreen(parentViewModel: MainScreenVM) {
                 .padding(top = insets.statusBarHeight).background(Color.Gray),
     ) {
         Text(
-            text = viewModel.test,
+            text = viewModel.stock.value.toString(),
             modifier = Modifier.padding(bottom = 20.dp),
         )
     }

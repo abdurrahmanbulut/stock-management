@@ -10,11 +10,11 @@ class MainScreenVM : ViewModel() {
     val onSecond = createEvent()
     lateinit var navigator: Navigator
 
-    fun onClickFirst()  {
+    fun onClickFirst() {
         onFirst.value = triggered
     }
 
-    fun onClickSecond()  {
+    fun onClickSecond() {
         onSecond.value = triggered
     }
 }
