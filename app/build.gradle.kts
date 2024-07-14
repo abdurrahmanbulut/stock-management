@@ -70,6 +70,9 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.lottie)
 
+    implementation(fileTree("../libs"))
+
+
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)

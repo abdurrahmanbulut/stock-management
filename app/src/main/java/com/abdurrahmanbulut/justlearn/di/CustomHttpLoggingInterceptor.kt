@@ -1,5 +1,8 @@
 package com.abdurrahmanbulut.justlearn.di
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.RequestBody
@@ -7,7 +10,6 @@ import okhttp3.Response
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import java.nio.charset.StandardCharsets
-import kotlin.math.log
 
 
 class CustomHttpLoggingInterceptor : Interceptor {
@@ -22,19 +24,21 @@ class CustomHttpLoggingInterceptor : Interceptor {
     }
 
     private fun logRequest(request: Request) {
-        logger.log("LOGGER GOLLUM")
+        logger.log("SHERLOCK REQUEST")
         val separator = "\n-----------------------\n"
-
-        logger.log("REQUEST:")
 
         logger.log("METHOD: ${request.method}")
         logger.log("URL: ${request.url}")
 
         logger.log("HEADER ->")
-        request.headers.forEach { header ->
-            logger.log("    * ${header.first}: ${header.second}")
+
+        if (request.headers.size > 0) {
+            request.headers.forEach { header ->
+                logger.log("    * ${header.first}: ${header.second}")
+            }
+            logger.log("\n")
         }
-        logger.log("\n")
+
         request.body?.let { body ->
             logger.log("BODY: ${bodyToString(body)}")
         }
@@ -49,21 +53,21 @@ class CustomHttpLoggingInterceptor : Interceptor {
         val responseBody = response.body
         val responseBodyString = responseBody?.string()
 
-        logger.log("RESPONSE:")
+        logger.log("SHERLOCK RESPONSE")
 
         logger.log("STATUS: ${response.code}")
         logger.log("MESSAGE: ${response.message}")
-        logger.log("REQUEST URL: ${response.request.url}")
 
         logger.log("HEADER")
         response.headers.forEach { header ->
             logger.log("    * ${header.first}: ${header.second}")
         }
 
-        logger.log("\n")
+        if (response.headers.size > 0) logger.log("\n")
+
         logger.log("BODY ->")
         responseBodyString?.let {
-            logger.log(it)
+            logger.log(prettyPrintJson(it))
         }
 
         logger.log("END RESPONSE$separator")
@@ -73,6 +77,7 @@ class CustomHttpLoggingInterceptor : Interceptor {
             .build()
     }
 
+
     private fun bodyToString(requestBody: RequestBody): String {
         return try {
             val buffer = okio.Buffer()
@@ -81,5 +86,11 @@ class CustomHttpLoggingInterceptor : Interceptor {
         } catch (e: Exception) {
             "Couldn't parse request body"
         }
+    }
+
+    private fun prettyPrintJson(json: String): String {
+        val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+        val jsonElement = JsonParser.parseString(json)
+        return gson.toJson(jsonElement)
     }
 }

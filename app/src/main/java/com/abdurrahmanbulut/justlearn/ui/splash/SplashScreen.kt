@@ -1,19 +1,13 @@
 package com.abdurrahmanbulut.justlearn.ui.splash
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.abdurrahmanbulut.justlearn.R
 import com.abdurrahmanbulut.justlearn.navigator.screen.Screen
@@ -32,8 +26,21 @@ fun SplashScreen() {
 
     LaunchedEffect(Unit) {
         delay(3000)
-        navigator.navigateTo(Screen.Home.route)
+        navigator.navigate(Screen.Home.route, TestData())
     }
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+        Content()
+    }
+
+}
+data class TestData(
+    val a: Int = 5,
+    val b: String = "text123",
+    val c: Boolean = false
+)
+
+@Composable
+fun Content() {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.splash))
     LottieAnimation(
         modifier = Modifier
