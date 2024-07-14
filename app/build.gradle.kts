@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.abdurrahmanbulut.justlearn"
+    namespace = "com.abdurrahmanbulut.stockManagement"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.abdurrahmanbulut.justlearn"
+        applicationId = "com.abdurrahmanbulut.stockManagement"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.lottie)
 
     implementation(fileTree("../libs"))
+    implementation(libs.androidx.constraintlayout)
 
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
